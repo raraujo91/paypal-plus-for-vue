@@ -109,7 +109,7 @@ Event name must be `pppContinue` to call the action to execute the payment after
 
 ### Treating payment execution or error
 
-As previously informed you need to register two listeners on component (`@checkout` and `@error`). If everything went good and the payment is approved you need to call the [PayPal API v1/payments/payment/{transaction-id}/execute]((https://developer.paypal.com/docs/api/payments/v1/#payment-create-response)) to actually execute this payment. 
+As previously informed you need to register two listeners on component (`@checkout` and `@error`). If everything went good and the payment is approved you need to call the [PayPal API v1/payments/payment/{transaction-id}/execute](https://developer.paypal.com/docs/api/payments/v1/#payment-create-response) to actually execute this payment. 
 
 On first example I did declared the `@checkout` function to be triggered is named **onContinue**. So I did register a method with this name that receives the data from checkout event meaning that the payment was approved. Based on PayPal API's I do need to info the payerId to the API (or my backend that does that) to execute this payment. 
 

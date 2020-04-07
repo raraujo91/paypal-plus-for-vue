@@ -1,7 +1,16 @@
 {
   "name": "paypalplus-for-vue",
   "version": "1.0.0",
-  "description": "",
+  "description": "PayPal Plus component made for Vue",
+  "keywords": [
+    "paypal",
+    "paypalplus",
+    "ppplus"
+  ],
+  "homepage": "https://github.com/raraujo91/paypal-plus-for-vue",
+  "bugs": {
+    "url": "https://github.com/raraujo91/paypal-plus-for-vue/issues"
+  },
   "main": "dist/paypal-plus.ssr.js",
   "browser": "dist/paypal-plus.esm.js",
   "module": "dist/paypal-plus.esm.js",
@@ -11,6 +20,11 @@
     "src/**/*.vue",
     "!src/serve-dev.*"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raraujo91/paypal-plus-for-vue.git"
+  },
+  "author": "Renan Araujo <renan.alvs@gmail.com> (https://github.com/raraujo91)",
   "scripts": {
     "serve": "vue-cli-service serve src/serve-dev.js",
     "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",

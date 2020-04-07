@@ -10,7 +10,7 @@ A single-file component made for PayPal Plus (aka PayPal unbranded checkout). Wo
 ### Installation
 
 ```
-    npm install paypal-plus-for-vue
+    npm install paypalplus-for-vue
 ```
 
 ### Usage
@@ -121,7 +121,7 @@ methods: {
     onContinue(data) {
         let payerId = data.payer.payer_info.payer_id
         axios.post('/my/backend/paypal/execute', 
-            payer_id: payerId
+            { payer_id: payerId } 
         }).then((res) => {
             /* Execute something when Promise is resolved */
         })

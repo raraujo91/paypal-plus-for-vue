@@ -18,7 +18,7 @@ A single-file component made for PayPal Plus (aka PayPal unbranded checkout). Wo
 Import the component to the page you will instance the PayPal Plus frame:
 
 ```javascript
-    import PaypalPlus from 'paypal-plus-for-vue'
+    import PaypalPlus from 'paypalplus-for-vue'
 ```
 
 Then set it as component in parent .vue file:

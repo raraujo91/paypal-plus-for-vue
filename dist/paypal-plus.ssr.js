@@ -1,5 +1,4 @@
-'use strict';Object.defineProperty(exports,'__esModule',{value:true});function _interopDefault(e){return(e&&(typeof e==='object')&&'default'in e)?e['default']:e}var triggerbus=_interopDefault(require('triggerbus'));var pppBus = triggerbus();
-var script = {
+'use strict';Object.defineProperty(exports,'__esModule',{value:true});var script = {
   name: "PaypalPlus",
   // vue component name
   props: {
@@ -57,11 +56,6 @@ var script = {
       default: "550",
       required: false
     },
-    mxDebitCards: {
-      type: Boolean,
-      default: false,
-      required: false
-    },
     collectBillingAddress: {
       type: Boolean,
       default: false,
@@ -100,6 +94,11 @@ var script = {
       required: false
     },
     blockInstallment: {
+      type: Boolean,
+      default: false,
+      required: false
+    },
+    mxDebitCards: {
       type: Boolean,
       default: false,
       required: false
@@ -227,10 +226,6 @@ var script = {
   mounted: function mounted() {
     var _this = this;
 
-    pppBus.on('pppContinue', function () {
-      return _this.pppContinue();
-    });
-
     if (this.noScript === false) {
       this.loadLib("https://www.paypalobjects.com/webstatic/ppplusdcc/ppplusdcc.min.js").then(function () {
         return _this.pppInit;
@@ -335,7 +330,7 @@ var __vue_inject_styles__ = undefined;
 var __vue_scope_id__ = undefined;
 /* module identifier */
 
-var __vue_module_identifier__ = "data-v-ec02b94a";
+var __vue_module_identifier__ = "data-v-466a88f7";
 /* functional template */
 
 var __vue_is_functional_template__ = false;

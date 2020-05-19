@@ -68,6 +68,7 @@ Inside template you will call the paypal-plus tag:
 <!-- sandbox example below -->
 <template>
     <paypal-plus
+      ref="ppplus"
       mode="sandbox"
       approvalUrl="https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-65N73270YN200541T"
       firstName="Renan"
@@ -76,7 +77,8 @@ Inside template you will call the paypal-plus tag:
       taxId="27374114087"
       email="renan9379@sandboxpaypal.com"
       @checkout="onContinue"
-      @error="onError" />
+      @error="onError" 
+    />
 </template>
 ```
 
@@ -86,26 +88,28 @@ If all this were set good, this frame may show:
 
 ### Listening payment button
 
-This component was designed to use a Button component as the proper way to trigger payment call. Since events routing on many applications may vary I've set this component its own event bus in order to not take time to configure that in your side. Please open an issue if it's impacting your event management such as Vuex, Redux or even Vue's Event Bus trick. 
-
-Thanks to lightweight event bus option called [triggerbus](https://www.npmjs.com/package/triggerbus). :beers:
+Unfortunately **triggerbus** did not fit properly to listen button as a Vue SFC (creating through [vue-sfc-rollup](https://github.com/team-innovation/vue-sfc-rollup)). So the best way now to make it work is... 
+Include a `ref` prop (*i.e.* `ppplus` as above)  inside `paypal-plus` component and then register a method to execute this referenced component function named **pppContinue**.
 
 ```javascript
-import { pppBus } from 'paypal-plus-for-vue'
-
-// your code here...
+// Checkout.vue
 
 methods: {
-    executePayment() {
-        pppBus.trigger('pppContinue')
+    handleCheckout() {
+        this.$refs.ppplus.pppContinue();
     }
 }
 
-// ...your code here
+```
+
+```javascript
+// Checkout.vue
+
+<custom-button on:click="handleCheckout">Checkout</custom-button>
 
 ```
 
-Event name must be `pppContinue` to call the action to execute the payment after filling all card fields. 
+Soon a better way to threat it will be found, I promise. :crossed_fingers:
 
 ### Treating payment execution or error
 
@@ -115,7 +119,7 @@ On first example I did declared the `@checkout` function to be triggered is name
 
 
 ```javascript
-// your code here...
+// Checkout.vue
 
 methods: {
     onContinue(data) {
@@ -128,7 +132,6 @@ methods: {
     }
 }
 
-// ...your code here
 ```
 
 It's also needed to create a method to handle errors that may happen when things did not went good with tried payment. On my example I've registered a method named **onError** and then -- as the same that my onContinue did -- it needs to receive a data to treat the error according on what frame informed as error. 
@@ -139,13 +142,19 @@ It's also needed to create a method to handle errors that may happen when things
 > *I do highly recommend you to re-render PayPal Plus component when **any** error is triggered. One way to do that is attaching a componentKey as component prop -- [as explained on this article](https://michaelnthiessen.com/force-re-render/)*
 
 ```javascript
+// Checkout.vue
+
 data() {
     return {
         componentKey: 0
     }
 },
 
-// your code here...
+```
+
+
+```javascript
+// Checkout.vue
 
 methods: {
     onError(data) {
@@ -158,7 +167,6 @@ methods: {
     }
 }
 
-// ...your code here
 ```
 
 That's it. :tada: 

@@ -1,6 +1,5 @@
 <script>
-import triggerbus from 'triggerbus';
-export const pppBus = triggerbus();
+
 export default {
   name: "PaypalPlus", // vue component name
   props: {
@@ -214,7 +213,6 @@ export default {
   },
 
   mounted() {
-    pppBus.on('pppContinue', () => this.pppContinue());
     if (this.noScript === false) {
       this.loadLib(
         "https://www.paypalobjects.com/webstatic/ppplusdcc/ppplusdcc.min.js"

@@ -1,6 +1,3 @@
-import triggerbus from 'triggerbus';
-
-const pppBus = triggerbus();
 var script = {
   name: "PaypalPlus",
   // vue component name
@@ -59,11 +56,6 @@ var script = {
       default: "550",
       required: false
     },
-    mxDebitCards: {
-      type: Boolean,
-      default: false,
-      required: false
-    },
     collectBillingAddress: {
       type: Boolean,
       default: false,
@@ -102,6 +94,11 @@ var script = {
       required: false
     },
     blockInstallment: {
+      type: Boolean,
+      default: false,
+      required: false
+    },
+    mxDebitCards: {
       type: Boolean,
       default: false,
       required: false
@@ -238,8 +235,6 @@ var script = {
   },
 
   mounted() {
-    pppBus.on('pppContinue', () => this.pppContinue());
-
     if (this.noScript === false) {
       this.loadLib("https://www.paypalobjects.com/webstatic/ppplusdcc/ppplusdcc.min.js").then(() => {
         return this.pppInit;

@@ -1,6 +1,5 @@
 <script>
 import Vue from "vue";
-import CompButton from '@/comp-button.vue'
 import PaypalPlus from "@/paypal-plus.vue";
 import axios from "axios";
 
@@ -19,10 +18,12 @@ export default Vue.extend({
       this.success = true
     },
     onError(data) {},
+    buttonClicked() {
+      this.$refs.ppplus.pppContinue();
+    }
   },
   components: {
-    PaypalPlus,
-    CompButton
+    PaypalPlus
   },
   created() {
     try {
@@ -66,6 +67,7 @@ export default Vue.extend({
 <template>
   <div id="app" v-if="!noApprovalUrl">
     <PaypalPlus
+      ref="ppplus"
       :key="componentKey"
       mode="sandbox"
       iframeHeight="430"
@@ -74,12 +76,11 @@ export default Vue.extend({
       country="BR"
       taxId="27374114087"
       email="renan9379@sandboxpaypal.com"
-      buttonId="continueButton"
       :approvalUrl="approvalUrl"
       @checkout="onContinue"
       @error="onError"
     />
-    <CompButton/>
+    <button id="paymentButton" @click="buttonClicked">Pagar</button>
     <div id="paymentStatus" v-if="success">
       <center>Pagamento efetuado com sucesso!</center>
     </div>

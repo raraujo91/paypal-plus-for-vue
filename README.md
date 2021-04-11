@@ -1,5 +1,7 @@
 # PayPal Plus for Vue
 
+:warning: **This project does not support Vue 3 yet. Soon I'll work in a fix for that.**
+
 A single-file component made for PayPal Plus (aka PayPal unbranded checkout). Works like PayPal Payment Pro but it was tailored for Brazil and Mexico markets.
 
 ##### Important notes:
